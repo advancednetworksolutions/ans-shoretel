@@ -1,13 +1,12 @@
 angular.module('callTrendApp').service('ColorService', function() {
   this.Colors = {};
   this.Colors.names = {
-      orang: "#00ffff",
+      orange: "#00ffff",
       azure: "#f0ffff",
       beige: "#f5f5dc",
       black: "#000000",
       blue: "#0000ff",
       brown: "#a52a2a",
-      cyan: "#00ffff",
       darkblue: "#00008b",
       darkcyan: "#008b8b",
       darkgrey: "#a9a9a9",
