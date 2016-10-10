@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="callTrendApp">
+  <head>
+    <base href="/reports/calltrendapp/">
+    <meta charset="utf-8">
+    <title>Call Trend Analysis</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="main/main.css" media="screen" title="no title">
+    <link rel="styleSheet" href="../bower_components/angular-ui-grid/ui-grid.min.css"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+  <style media="screen">
+
+  *{
+    color:#414141;
+    font-family: Arial;
+  }
+  .btn{
+    cursor:pointer;
+    cursor:hand;
+  }
+
+  </style>
+  </head>
+  <body>
+    <div ng-view="">
+
+    </div>
+  </body>
+  <!-- Bower-->
+  <script src="../bower_components/angular/angular.min.js"></script>
+  <script src="../bower_components/angular-route/angular-route.min.js"></script>
+  <script src="../bower_components/angular-ui-grid/ui-grid.min.js"></script>
+  <script src="../bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+  <script src="../bower_components/ng-csv/build/ng-csv.min.js"></script>
+  <script src="../bower_components/chartjs/Chart.min.js"></script>
+  <!--End Bower-->
+
+  <!--App-->
+  <script type="text/javascript" src="app.js"></script>
+  <!--End App-->
+
+  <!-- App Modules -->
+  <script type="text/javascript" src="util/util.service.js"></script>
+  <script type="text/javascript" src="main/color.service.js"></script>
+  <script type="text/javascript" src="main/chart.service.js"></script>
+  <script type="text/javascript" src="main/main.controller.js"></script>
+  <script type="text/javascript" src="main/main.js"></script>
+  <!-- End App Modules-->
+
+
+</html>

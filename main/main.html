@@ -1,0 +1,102 @@
+<div class="navbar navbar-default">
+  <div class="navbar-brand">
+    <img src="assets/ans_logo.png" alt="" /> <span>+</span>
+    <img src="assets/shoretel_logo.jpeg" alt="" />
+  </div>
+  <div class="navbar-brand">
+    <button ng-click="getData()" class="btn-ans btn btn-sm">Refresh</button>
+  </div>
+  <div class="navbar-brand">
+    <button class="btn btn-default" style="display:inline-block;padding:5px;" type="button" csv-header="getHeader()" ng-csv="callsByHour" filename="shoretelcalldata.csv">Export to CSV <i class="fa fa-cloud-download" aria-hidden="true"></i></button>
+  </div>
+  <div ng-if="loading" class="navbar-brand">
+    Loading...
+  </div>
+  <div ng-if="!loading" class="navbar-brand">
+    {{totalInboundCalls}}  {{filter.currentFilter}}
+  </div>
+
+</div>
+<div class="container">
+  <div class="row">
+
+    <div style="height:100%;" class="col-md-2">
+      <div style="background-color:#F5F5F5;" class="panel panel-default">
+
+        <ul style="min-height:300px;padding:10px;" class="nav nav-stacked" id="sidebar">
+          <h4>Query Options</h4>
+          <li>
+            <form class="form-inline">
+              <label for="filterSelect">Range:</label>
+              <div class="form-group">
+                <select class="form-control" name="filterSelect" id="filterSelect" ng-model="filter.currentFilter">
+                  <option ng-repeat="f in filter.filterOptions" value="{{f.range}}">{{f.range}}</option>
+                </select>
+              </div>
+            </form>
+          </li>
+          <li>
+            <form class="form-inline">
+                    <label for="groupSelect">Group by:</label>
+                    <div class="form-group">
+                      <select class="form-control" name="groupSelect" id="groupSelect" ng-model="filter.currentGrouping">
+                        <option ng-repeat="g in filter.groupOptions" value="{{g.grouping}}">{{g.grouping}}</option>
+                      </select>
+                    </div>
+                  </form>
+          </li>
+          <li>
+            <form  class="form-inline">
+                    <label for="groupSelect">Show averages: </label>
+                    <div class="form-group">
+                      <input type="checkbox" ng-model="avg">
+                    </div>
+                  </form>
+          </li>
+          <li>
+            <p style="color:#e74c3c;" ng-if="filter.currentGrouping !='day' && avg">
+              Incorrect use of average calculation
+            </p>
+          </li>
+        </ul>
+      </div>
+      </div>
+    <div class="col-md-10">
+
+      <div class="panel panel-default">
+        <h1 ng-if="loading"style="padding-top:150px;padding-bottom:200px;text-align:center;color:#F68D20;">Loading...<i style="font-size:42px;color:#414141;" class="fa fa-cog fa-spin fa-3x fa-fw"></i></h1>
+        <div id="chartSection">
+          <!--<canvas id="byHour" width="200" height="50" click="onClick"></canvas>-->
+        </div>
+
+        <div ng-if="!loading" ui-grid="{ data: callsByHour }" class="myGrid"></div>
+        <!--<table class="table table-striped">
+          <thead>
+            <th>
+              Hour
+            </th>
+            <th>
+              Calls
+            </th>
+            <th>
+              Day
+            </th>
+          </thead>
+          <tbody>
+            <tr ng-repeat="call in callsByHour">
+              <td>
+                {{call.column}}
+              </td>
+              <td>
+                {{call.val}}
+              </td>
+              <td>
+                {{call.grouping}}
+              </td>
+            </tr>
+          </tbody>
+        </table>-->
+      </div>
+    </div>
+  </div>
+</div>
