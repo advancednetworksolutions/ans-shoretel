@@ -53,11 +53,15 @@ angular.module('callTrendApp').controller('MainCtrl', function($scope, $http, $l
     }
   });
 
+  //TODO: Most of this function should be in standalone data service or call data service
   $scope.getData = function() {
     $scope.loading =true;
+
+    //TODO: add this functionality in chart.service.js to clean up controller
     var chartArea = angular.element(document.querySelector('#chartSection'));
     chartArea.empty();
     chartArea.prepend('<canvas ng-if="!loading" id="byHour" width="200" height="50" click="onClick"></canvas>');
+    
     $http.get('api/callsByHour.php?filter='+$scope.filter.currentFilter+'&grouping='+$scope.filter.currentGrouping+'&avg='+$scope.avg)
     .then(response => {
       $scope.callsByHour = response.data;

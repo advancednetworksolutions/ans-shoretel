@@ -28,10 +28,10 @@ if(isset($_GET['avg']) && $_GET['avg'] == 'true'){
 
     switch ($f) {
       case 'today':
-      $query = 'SELECT HOUR(shorewarecdr.queueCall.StartTime) as hour,COUNT(*) as calls,'.$grouping.' as grouping FROM shorewarecdr.queueCall WHERE TargetType = 1 AND (Extension = 405 OR Extension = 505)  AND DATE(shorewarecdr.queueCall.StartTime) = curdate() group by HOUR(shorewarecdr.queueCall.StartTime),'.$grouping.';';
+      $query = 'SELECT HOUR(shorewarecdr.queueCall.StartTime) as hour,COUNT(*) as calls,'.$grouping.' as grouping FROM shorewarecdr.queueCall WHERE  (Extension = 405 OR Extension = 505)  AND DATE(shorewarecdr.queueCall.StartTime) = curdate() group by HOUR(shorewarecdr.queueCall.StartTime),'.$grouping.';';
         break;
       case 'yesterday':
-      $query = 'SELECT HOUR(shorewarecdr.queueCall.StartTime) as hour,COUNT(*) as calls,'.$grouping.' as grouping FROM shorewarecdr.queueCall WHERE TargetType = 1 AND (Extension = 405 OR Extension = 505)  AND DATE(shorewarecdr.queueCall.StartTime) = curdate() -1 group by HOUR(shorewarecdr.queueCall.StartTime),'.$grouping.';';
+      $query = 'SELECT HOUR(shorewarecdr.queueCall.StartTime) as hour,COUNT(*) as calls,'.$grouping.' as grouping FROM shorewarecdr.queueCall WHERE  (Extension = 405 OR Extension = 505)  AND DATE(shorewarecdr.queueCall.StartTime) = curdate() -1 group by HOUR(shorewarecdr.queueCall.StartTime),'.$grouping.';';
         break;
       case 'this week':
         $query = 'SELECT hour,
@@ -99,7 +99,7 @@ if(isset($_GET['avg']) && $_GET['avg'] == 'true'){
       GROUP BY hour';
         break;
       default:
-      $query = 'SELECT HOUR(shorewarecdr.queueCall.StartTime) as hour,COUNT(*) as calls,'.$grouping.' as grouping FROM shorewarecdr.queueCall WHERE TargetType = 1 AND (QueueDN = 405 OR QueueDN = 505)  AND DATE(shorewarecdr.queueCall.StartTime) = curdate() group by HOUR(shorewarecdr.queueCall.StartTime),'.$grouping.';';
+      $query = 'SELECT HOUR(shorewarecdr.queueCall.StartTime) as hour,COUNT(*) as calls,'.$grouping.' as grouping FROM shorewarecdr.queueCall WHERE  (QueueDN = 405 OR QueueDN = 505)  AND DATE(shorewarecdr.queueCall.StartTime) = curdate() group by HOUR(shorewarecdr.queueCall.StartTime),'.$grouping.';';
         break;
     }
   }
@@ -129,28 +129,28 @@ if(isset($_GET['avg']) && $_GET['avg'] == 'true'){
 
     switch ($f) {
       case 'today':
-      $query = 'SELECT HOUR(shorewarecdr.queueCall.StartTime) as hour,COUNT(*) as calls,'.$grouping.' as grouping FROM shorewarecdr.queueCall WHERE TargetType = 1 AND (QueueDN = 405 OR QueueDN = 505)  AND DATE(shorewarecdr.queueCall.StartTime) = curdate() group by HOUR(shorewarecdr.queueCall.StartTime),'.$grouping.';';
+      $query = 'SELECT HOUR(shorewarecdr.queueCall.StartTime) as hour,COUNT(*) as calls,'.$grouping.' as grouping FROM shorewarecdr.queueCall WHERE (QueueDN = 405 OR QueueDN = 505)  AND DATE(shorewarecdr.queueCall.StartTime) = curdate() group by HOUR(shorewarecdr.queueCall.StartTime),'.$grouping.';';
         break;
       case 'yesterday':
       $query = 'SELECT HOUR(shorewarecdr.queueCall.StartTime) as hour,COUNT(*) as calls,'.$grouping.' as grouping FROM shorewarecdr.queueCall WHERE (QueueDN = 405 OR QueueDN = 505)  AND DATE(shorewarecdr.queueCall.StartTime) = curdate() -1 group by HOUR(shorewarecdr.queueCall.StartTime),'.$grouping.';';
         break;
       case 'this week':
-        $query = 'SELECT HOUR(shorewarecdr.queueCall.StartTime) as hour,COUNT(*) as calls,'.$grouping.' as grouping FROM shorewarecdr.queueCall WHERE TargetType = 1 AND (QueueDN = 405 OR QueueDN = 505)  AND WEEKOFYEAR(DATE(shorewarecdr.queueCall.StartTime))=WEEKOFYEAR(NOW()) group by HOUR(shorewarecdr.queueCall.StartTime),'.$grouping.';';
+        $query = 'SELECT HOUR(shorewarecdr.queueCall.StartTime) as hour,COUNT(*) as calls,'.$grouping.' as grouping FROM shorewarecdr.queueCall WHERE  (QueueDN = 405 OR QueueDN = 505)  AND WEEKOFYEAR(DATE(shorewarecdr.queueCall.StartTime))=WEEKOFYEAR(NOW()) group by HOUR(shorewarecdr.queueCall.StartTime),'.$grouping.';';
         break;
       case 'this month':
-        $query = 'SELECT HOUR(shorewarecdr.queueCall.StartTime) as hour,COUNT(*) as calls,'.$grouping.' as grouping FROM shorewarecdr.queueCall WHERE TargetType = 1 AND (QueueDN = 405 OR QueueDN = 505)  AND MONTH(DATE(shorewarecdr.queueCall.StartTime))=MONTH(curdate()) group by HOUR(shorewarecdr.queueCall.StartTime),'.$grouping.';';
+        $query = 'SELECT HOUR(shorewarecdr.queueCall.StartTime) as hour,COUNT(*) as calls,'.$grouping.' as grouping FROM shorewarecdr.queueCall WHERE  (QueueDN = 405 OR QueueDN = 505)  AND MONTH(DATE(shorewarecdr.queueCall.StartTime))=MONTH(curdate()) group by HOUR(shorewarecdr.queueCall.StartTime),'.$grouping.';';
         break;
       case 'this quarter':
-        $query = 'SELECT HOUR(shorewarecdr.queueCall.StartTime) as hour,COUNT(*) as calls,'.$grouping.' as grouping FROM shorewarecdr.queueCall WHERE TargetType = 1 AND (QueueDN = 405 OR QueueDN = 505)  AND QUARTER(DATE(shorewarecdr.queueCall.StartTime))=QUARTER(curdate()) group by HOUR(shorewarecdr.queueCall.StartTime),'.$grouping.';';
+        $query = 'SELECT HOUR(shorewarecdr.queueCall.StartTime) as hour,COUNT(*) as calls,'.$grouping.' as grouping FROM shorewarecdr.queueCall WHERE  (QueueDN = 405 OR QueueDN = 505)  AND QUARTER(DATE(shorewarecdr.queueCall.StartTime))=QUARTER(curdate()) group by HOUR(shorewarecdr.queueCall.StartTime),'.$grouping.';';
         break;
       case 'last quarter':
-          $query = 'SELECT HOUR(shorewarecdr.queueCall.StartTime) as hour,COUNT(*) as calls,'.$grouping.' as grouping FROM shorewarecdr.queueCall WHERE TargetType = 1 AND (QueueDN = 405 OR QueueDN = 505)  AND QUARTER(DATE(shorewarecdr.queueCall.StartTime))=QUARTER(curdate())-1 group by HOUR(shorewarecdr.queueCall.StartTime),'.$grouping.';';
+          $query = 'SELECT HOUR(shorewarecdr.queueCall.StartTime) as hour,COUNT(*) as calls,'.$grouping.' as grouping FROM shorewarecdr.queueCall WHERE  (QueueDN = 405 OR QueueDN = 505)  AND QUARTER(DATE(shorewarecdr.queueCall.StartTime))=QUARTER(curdate())-1 group by HOUR(shorewarecdr.queueCall.StartTime),'.$grouping.';';
         break;
         case 'last month':
-          $query = 'SELECT HOUR(shorewarecdr.queueCall.StartTime) as hour,COUNT(*) as calls,'.$grouping.' as grouping FROM shorewarecdr.queueCall WHERE TargetType = 1 AND (QueueDN = 405 OR QueueDN = 505)  AND MONTH(DATE(shorewarecdr.queueCall.StartTime))=MONTH(curdate())-1 group by HOUR(shorewarecdr.queueCall.StartTime),'.$grouping.';';
+          $query = 'SELECT HOUR(shorewarecdr.queueCall.StartTime) as hour,COUNT(*) as calls,'.$grouping.' as grouping FROM shorewarecdr.queueCall WHERE  (QueueDN = 405 OR QueueDN = 505)  AND MONTH(DATE(shorewarecdr.queueCall.StartTime))=MONTH(curdate())-1 group by HOUR(shorewarecdr.queueCall.StartTime),'.$grouping.';';
           break;
       default:
-      $query = 'SELECT HOUR(shorewarecdr.queueCall.StartTime) as hour,COUNT(*) as calls,'.$grouping.' as grouping FROM shorewarecdr.queueCall WHERE TargetType = 1 AND (QueueDN = 405 OR QueueDN = 505)  AND DATE(shorewarecdr.queueCall.StartTime) = curdate() group by HOUR(shorewarecdr.queueCall.StartTime),'.$grouping.';';
+      $query = 'SELECT HOUR(shorewarecdr.queueCall.StartTime) as hour,COUNT(*) as calls,'.$grouping.' as grouping FROM shorewarecdr.queueCall WHERE  (QueueDN = 405 OR QueueDN = 505)  AND DATE(shorewarecdr.queueCall.StartTime) = curdate() group by HOUR(shorewarecdr.queueCall.StartTime),'.$grouping.';';
         break;
     }
   }
